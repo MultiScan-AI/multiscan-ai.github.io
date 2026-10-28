@@ -1,6 +1,6 @@
 # MultiScan AI website
 
-The public, informational website for MultiScan AI: what it does, the sample types it reads, how it works, and the principles behind it. For judges, partners and anyone curious about the project.
+The public, informational website for MultiScan AI: the problem, the idea, how it works and the principles behind it. For judges, partners and anyone curious about the project.
 
 The app, the analysis service and the team analytics live in [multiscan-app](https://github.com/MultiScan-AI/multiscan-app).
 
@@ -15,18 +15,44 @@ npm run preview    # serve the production build
 
 Built with React, Vite and Tailwind CSS. No server, no tracking, no data collection.
 
+## Hosting and search engines
+
+- **Deploy:** build command `npm run build`, output folder `dist`. Any static host works (Cloudflare Pages, Netlify, Vercel).
+- **Site address:** set once in `scripts/prerender.js` (`SITE_URL`), or as a `SITE_URL` environment variable on the host. It fills in the canonical link, link-preview tags, structured data, `robots.txt` and `sitemap.xml`. Change it when the site moves to its own domain, then rebuild.
+- **What the build adds for search:** the full page text is written into the HTML (`src/entry-server.jsx`, `scripts/prerender.js`), so search engines and link previews see it without JavaScript. Plus a title and description, a link-preview card (`public/og-image.jpg`, 1200×630), Organization and WebSite structured data, `robots.txt` and `sitemap.xml`.
+- **After each move to a new address:** add the site in [Google Search Console](https://search.google.com/search-console) and [Bing Webmaster Tools](https://www.bing.com/webmasters), and submit `sitemap.xml`.
+- **Changing the hero?** Retake `public/og-image.jpg` so shared links still match the page.
+
 ## Content rules
 
 - Say only what is true today. No accuracy figures, customer names or timelines that have not been agreed.
-- No patient images. The microscope fields on the page are drawings.
-- Diseases are named once, in the problem statement. Elsewhere the page talks about sample types.
+- Every figure about the problem links to its primary source and is worded the way that source words it (see `FIGURES` in `src/App.jsx`). No figure we could not check at the source.
+- MultiScan is a screening aid: never say it diagnoses, or that non-specialists can diagnose with it.
+- No patient images. The microscope fields on the page are drawings. Photo rules are under Photos below.
+- Diseases are named once, in the problem statement. Elsewhere the page talks about slides and fields.
+- The phone sits in an adapter on the eyepiece. Never describe it as hand-held.
 - Keep internal details off the page: release thresholds, datasets, roadmap and per-check status.
 
 ## Structure
 
 | Path | What |
 |---|---|
-| `src/App.jsx` | The whole page: sections, content and the field illustration |
+| `src/App.jsx` | The whole page: sections, content and the drawings |
+| `src/entry-server.jsx`, `scripts/prerender.js` | Build-time rendering, site address, robots.txt and sitemap.xml |
 | `src/index.css` | Animations (all switched off for visitors who prefer reduced motion) |
 | `tailwind.config.js` | Brand colours (from the app) and fonts |
-| `public/` | Logo and the app screenshot |
+| `public/` | Logo, favicon and phone home-screen icon |
+| `public/images/` | Background photos, resized for the web |
+
+## Photos
+
+No recognisable people next to the product: a stock photo's subject has not agreed to appear beside MultiScan, and stock licences forbid implying they endorse it. Use equipment, slides, hands, government (public-domain) photos, or our own photos taken with signed consent (see the photo consent form in the MultiScan AI guides). People who do appear should look like the lab staff MultiScan is for.
+
+All are free for commercial use, no credit required: [Unsplash License](https://unsplash.com/license) or [Pexels License](https://www.pexels.com/license/).
+
+| File | Where | Photo |
+|---|---|---|
+| `hero-microscope.jpg` | Hero | [Shallow focus photography of microscope](https://www.pexels.com/photo/2280547/), Chokniti Khongchum, Pexels |
+| `microscopist.jpg` | The idea | [Researcher using a microscope](https://unsplash.com/photos/_YSrXCByqJQ), CDC (US government), Unsplash |
+| `slide-on-stage.jpg` | Principles | [A microscope being used to examine a substance](https://unsplash.com/photos/YDLlT9DNOI4), Dmytro Vynohradov, Unsplash |
+| `cells-micrograph.jpg` | Footer | [Electron micrograph of immune cells](https://unsplash.com/photos/LnvCEXQwC-o), National Cancer Institute, Unsplash |
