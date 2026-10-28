@@ -9,7 +9,13 @@ const SITE_URL = (process.env.SITE_URL || "https://multiscan-ai.ssozijamillah.wo
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
-const { render } = await import(pathToFileURL(path.join(root, "dist-ssr", "entry-server.js")).href);
+// The server build is normally dist-ssr/entry-server.js, but some build plugins nest it and add a hash.
+const ssrDir = path.join(root, "dist-ssr");
+const entry = fs.readdirSync(ssrDir, { recursive: true })
+  .map((f) => path.join(ssrDir, f))
+  .find((f) => /entry-server(-[\w-]+)?\.m?js$/.test(path.basename(f)));
+if (!entry) throw new Error(`No entry-server file found in ${ssrDir}`);
+const { render } = await import(pathToFileURL(entry).href);
 
 const htmlPath = path.join(dist, "index.html");
 const html = fs.readFileSync(htmlPath, "utf8")

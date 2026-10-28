@@ -1,0 +1,11 @@
+// Cloudflare deploy settings. The site is plain static files: `npm run build` makes `dist`,
+// and `wrangler deploy` uploads it as-is. Having this file stops wrangler's automatic setup,
+// which would otherwise change the build.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "multiscan-ai",
+  "compatibility_date": "2026-10-23",
+  "assets": {
+    "directory": "./dist"
+  }
+}
