@@ -5,7 +5,7 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 // The public address of the site. Change it here (or set SITE_URL) when the site moves to its own domain.
-const SITE_URL = (process.env.SITE_URL || "https://multiscan-ai.ssozijamillah.workers.dev").replace(/\/$/, "");
+const SITE_URL = (process.env.SITE_URL || "https://multiscan-ai.github.io").replace(/\/$/, "");
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");

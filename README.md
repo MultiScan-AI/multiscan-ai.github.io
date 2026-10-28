@@ -17,11 +17,12 @@ Built with React, Vite and Tailwind CSS. No server, no tracking, no data collect
 
 ## Hosting and search engines
 
-- **Deploy:** build command `npm run build`, output folder `dist`. Any static host works (Cloudflare Pages, Netlify, Vercel).
-- **Site address:** set once in `scripts/prerender.js` (`SITE_URL`), or as a `SITE_URL` environment variable on the host. It fills in the canonical link, link-preview tags, structured data, `robots.txt` and `sitemap.xml`. Change it when the site moves to its own domain, then rebuild.
+- **Live site:** https://multiscan-ai.github.io, published by GitHub Pages. Every push to `main` builds and publishes it (`.github/workflows/pages.yml`); progress shows under the repo's Actions tab.
+- **Site address:** set as `SITE_URL` in the workflow, with the same default in `scripts/prerender.js`. It fills in the canonical link, link-preview tags, structured data, `robots.txt` and `sitemap.xml`. When the site gets its own domain, add it under Settings → Pages → Custom domain, change `SITE_URL` in both places and push.
 - **What the build adds for search:** the full page text is written into the HTML (`src/entry-server.jsx`, `scripts/prerender.js`), so search engines and link previews see it without JavaScript. Plus a title and description, a link-preview card (`public/og-image.jpg`, 1200×630), Organization and WebSite structured data, `robots.txt` and `sitemap.xml`.
-- **After each move to a new address:** add the site in [Google Search Console](https://search.google.com/search-console) and [Bing Webmaster Tools](https://www.bing.com/webmasters), and submit `sitemap.xml`.
+- **Search engines:** add the site in [Google Search Console](https://search.google.com/search-console) and [Bing Webmaster Tools](https://www.bing.com/webmasters) and submit `sitemap.xml`. Do it again after any change of address.
 - **Changing the hero?** Retake `public/og-image.jpg` so shared links still match the page.
+- `wrangler.jsonc` is only for the older Cloudflare copy of the site; it can go once that is switched off.
 
 ## Content rules
 
