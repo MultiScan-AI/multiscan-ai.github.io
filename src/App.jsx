@@ -219,7 +219,7 @@ export default function App() {
       <a href="#top" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-deep focus:px-4 focus:py-2 focus:text-white">
         Skip to content
       </a>
-      <header className={`sticky top-0 z-30 border-b bg-paper/90 backdrop-blur-sm transition-[border-color,box-shadow] duration-300 ${scrolled ? "border-ink/10 shadow-[0_10px_30px_-18px_rgba(21,26,59,0.25)]" : "border-transparent"}`}>
+      <header className={`sticky top-0 z-30 border-b bg-paper/90 backdrop-blur-sm transition-[border-color,box-shadow] duration-200 ${scrolled ? "border-ink/10 shadow-[0_10px_30px_-18px_rgba(21,26,59,0.25)]" : "border-transparent"}`}>
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 md:h-[4.5rem]">
           <a href="#top" className="flex items-center gap-2.5 rounded-lg" aria-label="MultiScan AI home">
             <img src="/logo.png" alt="" width="32" height="32" className="h-8 w-8 rounded-lg" />
@@ -234,7 +234,7 @@ export default function App() {
             ))}
           </nav>
           <button type="button" onClick={() => setMenuOpen((o) => !o)} aria-expanded={menuOpen} aria-controls="mobile-menu"
-                  className="grid h-10 w-10 place-items-center rounded-full bg-white/70 text-deep ring-1 ring-ink/10 md:hidden">
+                  className="press grid h-10 w-10 place-items-center rounded-full bg-white/70 text-deep ring-1 ring-ink/10 md:hidden">
             <span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden>
               {menuOpen ? <path d="M6 6l12 12M18 6 6 18" /> : <path d="M4 8h16M4 16h16" />}
@@ -242,7 +242,7 @@ export default function App() {
           </button>
         </div>
         {menuOpen && (
-          <nav id="mobile-menu" aria-label="Main" className="border-t border-ink/10 bg-paper px-5 pb-5 pt-2 md:hidden">
+          <nav id="mobile-menu" aria-label="Main" className="menu-drop border-t border-ink/10 bg-paper px-5 pb-5 pt-2 md:hidden">
             {SECTIONS.map(([id, name], i) => (
               <a key={id} href={`#${id}`} onClick={() => setMenuOpen(false)}
                  className="flex items-baseline gap-4 border-b border-ink/10 py-4 font-serif text-2xl text-deep">
@@ -276,9 +276,9 @@ export default function App() {
               slip through and fewer are reported by mistake.
             </p>
             <div className="rise rise-4 mt-10 flex flex-wrap items-center gap-x-6 gap-y-4">
-              <a href="#how" className="group inline-flex h-12 items-center gap-3 rounded-full bg-deep pl-6 pr-5 font-semibold text-white shadow-[0_10px_24px_-12px_rgba(46,54,103,0.7)] transition hover:bg-night">
+              <a href="#how" className="group inline-flex h-12 items-center gap-3 rounded-full bg-deep pl-6 pr-5 font-semibold text-white shadow-[0_10px_24px_-12px_rgba(46,54,103,0.7)] press hover:bg-night">
                 See how it works
-                <span className="grid h-7 w-7 place-items-center rounded-full bg-white/10 transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-white/10 transition-transform duration-200 ease-out group-hover:translate-x-0.5" aria-hidden>→</span>
               </a>
               <span className="text-sm text-ink-muted">Works with the microscope you already have.</span>
             </div>
